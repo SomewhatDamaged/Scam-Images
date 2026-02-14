@@ -1,4 +1,5 @@
 import glob
+import json
 
 import imagehash
 from PIL import Image
@@ -17,12 +18,16 @@ def get_phash(filename: str) -> str:
 
 def main() -> None:
     hashes = []
-    list_ = glob.glob(r"./scam_images/*/*")
-    for target in list_:
+    list_ = glob.glob(r"./*/*")
+    print(list_)
+    for target in list_:  # Build list
         if hash := get_phash(target):
             hashes.append(hash)
+    hashes = list(set(hashes))  # Remove dupes
     hash_string = '","'.join(hashes)
     print(f'["{hash_string}"]')
+    with open("hashes.json", "w") as hash_file:
+        json.dump(hashes, hash_file, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
