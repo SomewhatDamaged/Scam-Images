@@ -49,7 +49,7 @@ def rem_collisions(hashes: list[str]) -> list[str]:
     return hashes
 
 def get_filenames() -> list[str]:
-    return glob.glob(r"../*/*")
+    return glob.glob(r"../images/*/*")
 
 def get_hashes() -> list[str]:
     hashes: list = []
