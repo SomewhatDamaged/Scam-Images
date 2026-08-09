@@ -76,7 +76,13 @@ def main() -> None:
     hashes_and_dimensions_temp = []
     print(f"Pre-dupe-removal:   {len(hashes_and_dimensions)}")
     for hash in hashes_and_dimensions:
-        if hash in hashes_and_dimensions_temp:
+        skip = False
+        for hash_temp in hashes_and_dimensions_temp:
+            if hash["phash"] == hash_temp["phash"]:
+                if hash_temp["dimensions"] == hash_temp["dimensions"]:
+                    skip = True
+                    break
+        if skip:
             continue
         hashes_and_dimensions_temp.append(hash)
     hashes_and_dimensions = hashes_and_dimensions_temp
