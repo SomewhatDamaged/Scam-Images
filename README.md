@@ -1,7 +1,7 @@
 # Scam-Images
 A list of images that are known scams that get posted to chat services. Please treat these like Co-60 and don't share them on rando servers. Drop and run!
 
-I accept PRs with new images. Please use the format (d/m/yyyy) for the folder and make an `info.txt` file to state where you found them.
+I accept PRs with new images. Please use the script `create_image_folder.py` to create a folder, and make an `info.txt` file to state where you found them (or not, I'm not the boss of you).
 
 Can recommend using something like [ImageHash (python)](https://pypi.org/project/ImageHash/) for comparing images. A hamming distance of ~4 should account for JPG compression without catching unrelated things.
 
@@ -55,6 +55,16 @@ A `result` > `0` indicates a possible match of a scam image. `0` indicates defin
 I would recommend counting anything 4+ as being a hit.
 
 --------
+
+To submit images directly, you can do so either with SentryBot's context menus, or with an API endpoint:
+
+- Endpoint (POST): `https://api.excessive.space/v1/report`
+- Pass the url of an image as a `url` header.
+- Request (DM `.damaged` on Discord, or email me: spam-images@excessive.space) an API key, and put it in the usual `Authorization` header as a `Bearer` token.
+
+It should look something like:
+<img width="1580" height="414" alt="image" src="https://github.com/user-attachments/assets/124ff070-b64d-4253-8844-4d220c59c097" />
+
 
 <img width="500" height="auto" alt="image" src="https://github.com/user-attachments/assets/c9906e97-127f-4928-b8d0-bd39fa867c55" />
 
