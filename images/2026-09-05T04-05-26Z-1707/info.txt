@@ -1,0 +1,1 @@
+Interesting one. Could be a case for using OCR on images, but again, that's a hungry operation to be performing in the bot (or even on CF).
