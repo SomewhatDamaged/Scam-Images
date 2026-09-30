@@ -70,7 +70,7 @@ def get_hashes_and_dimensions() -> list[dict]:
     return hashes_and_dimensions
 
 
-def main() -> None:
+def main(force_reduced_output: bool = False) -> None:
     hashes: list = get_hashes()
     hashes_and_dimensions: list[dict] = get_hashes_and_dimensions()
     hashes_and_dimensions_temp = []
@@ -134,7 +134,7 @@ def main() -> None:
     response_b1 = None
     response_a2 = ""
     response_b2 = ""
-    if len(old_hashes) < len(hashes):
+    if len(old_hashes) < len(hashes) or force_reduced_output:
         if old_hash_string:
             response_a1 = update_phash(client=client, kv_config=kv_config, hash_string=old_hash_string, backup=True)
         else:
@@ -142,7 +142,7 @@ def main() -> None:
         response_a2 = update_phash(client=client, kv_config=kv_config, hash_string=hash_string)
     else:
         print("Hash list same or smaller.")
-    if len(old_hashes_and_dimensions) < len(hashes_and_dimensions):
+    if len(old_hashes_and_dimensions) < len(hashes_and_dimensions) or force_reduced_output:
         if old_hashes_and_dimensions_string:
             response_b1 = update_phash_and_dimensions(client=client, kv_config=kv_config, hashes_and_dimensions_string=old_hashes_and_dimensions_string, backup=True)
         else:
