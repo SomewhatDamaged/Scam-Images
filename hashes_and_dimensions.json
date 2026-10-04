@@ -1477,6 +1477,34 @@
         ]
     },
     {
+        "phash": "c3fa380fe1d01fc01ff0c3801837c00f781fe0593f560fe88feac7eab46b620f",
+        "dimensions": [
+            1280,
+            1152
+        ]
+    },
+    {
+        "phash": "80fc7f025675acdb5d71982f3f00c4c8ba13c7eecc5f53e43f0160b99c8931a6",
+        "dimensions": [
+            960,
+            1280
+        ]
+    },
+    {
+        "phash": "bd473880c36a53dfdca89fd0ad6752a093fe381fc6c06d5a52b1bd4e12cf8206",
+        "dimensions": [
+            960,
+            1280
+        ]
+    },
+    {
+        "phash": "a6d94f6449363d8b3b2137db381780dcc8fc04cc46211f23f7632f10e277cd97",
+        "dimensions": [
+            1070,
+            1280
+        ]
+    },
+    {
         "phash": "bbac1388cc534c6133166616c8f9d0193e6c36e5d3072f9994f9ccf63f823336",
         "dimensions": [
             3840,
