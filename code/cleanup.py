@@ -28,7 +28,9 @@ def main() -> None:
             print("Removing", target, " Multi: ", multi)
             os.remove(target)
     print("Removed", i, " of ", len(files), "\nKept: ", len(files)-i)
-    process_hashes(True)
+    proceed = input("Would you like to upload? (y/n): ")
+    if proceed == "y":
+        process_hashes(True)
 
 
 
