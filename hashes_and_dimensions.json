@@ -1666,6 +1666,34 @@
         ]
     },
     {
+        "phash": "a6dd496649b235c91931b7c9b802a05ec8fc85fcc6e11d23f7630f10f213cdd7",
+        "dimensions": [
+            1070,
+            1280
+        ]
+    },
+    {
+        "phash": "bd423a85c03f5155ceac9fdabd2052b593bb3d05c2fc6d5b4290bd0b1ac79303",
+        "dimensions": [
+            960,
+            1280
+        ]
+    },
+    {
+        "phash": "c3fa380fe3d01fc01ef0c3803837c01f781fe0693f420fe88feac1eabc5f620f",
+        "dimensions": [
+            1280,
+            1166
+        ]
+    },
+    {
+        "phash": "80f87e0252f72ffb5df5987e7b00c4c0ba27c7e8487d57453813c4b09c0f63e4",
+        "dimensions": [
+            960,
+            1280
+        ]
+    },
+    {
         "phash": "bbac1388cc534c6133166616c8f9d0193e6c36e5d3072f9994f9ccf63f823336",
         "dimensions": [
             3840,
