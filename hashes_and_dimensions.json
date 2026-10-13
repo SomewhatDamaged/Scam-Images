@@ -1820,6 +1820,34 @@
         ]
     },
     {
+        "phash": "c4c4384937374ae6c4e8319b3b123f2643c984f93b3e3daa41e08e0fba3b74bd",
+        "dimensions": [
+            946,
+            1261
+        ]
+    },
+    {
+        "phash": "dc708712b1cf71ac638c6863ee72171bf99b17016f816ce10e0e6aab31d60f4f",
+        "dimensions": [
+            960,
+            1280
+        ]
+    },
+    {
+        "phash": "93d46723e4f9b09e4b2335573ecc5b2f348f18cc1905b6929929c69aa557c92d",
+        "dimensions": [
+            960,
+            1280
+        ]
+    },
+    {
+        "phash": "fe5fcd9711c2cda40378bc496c05324f5cab2b5a397212b4149eb84cdcd2b379",
+        "dimensions": [
+            960,
+            1280
+        ]
+    },
+    {
         "phash": "bbac1388cc534c6133166616c8f9d0193e6c36e5d3072f9994f9ccf63f823336",
         "dimensions": [
             3840,
