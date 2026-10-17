@@ -68,6 +68,11 @@ It should look something like:
 
 <img width="500" height="auto" alt="image" src="https://github.com/user-attachments/assets/c9906e97-127f-4928-b8d0-bd39fa867c55" />
 
+--------
+
+Now accepting text from OCRable images!
+
+--------
 
 Projects using this data:
 - https://github.com/SomewhatDamaged/SentryBot
