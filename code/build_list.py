@@ -48,6 +48,16 @@ def rem_collisions(hashes: list[str]) -> list[str]:
                 break
     return hashes
 
+def get_string_filenames() -> list[str]:
+    return glob.glob(r"../strings/*")
+
+def get_strings() -> list[str]:
+    string_list: list[str] = []
+    for filename in get_string_filenames():
+        with open(filename, "r") as string_file:
+            string_list.append(string_file.read())
+    return string_list
+
 def get_filenames() -> list[str]:
     return glob.glob(r"../images/*/*")
 
@@ -71,6 +81,15 @@ def get_hashes_and_dimensions() -> list[dict]:
 
 
 def main(force_reduced_output: bool = False) -> None:
+    strings: list[str] = []
+    for string in get_strings():
+        string = string.strip()
+        if string:
+            strings.append(string)
+    strings.sort()
+    with open("../strings.json", "w") as string_file:
+        json.dump(strings, string_file, ensure_ascii=False, indent=4)
+    strings_string = json.dumps(strings, ensure_ascii=False, indent=None)
     hashes: list = get_hashes()
     hashes_and_dimensions: list[dict] = get_hashes_and_dimensions()
     hashes_and_dimensions_temp = []
@@ -129,11 +148,26 @@ def main(force_reduced_output: bool = False) -> None:
         return
     with open("../.kv_config.json", "r") as kv_config_file:
         kv_config = json.load(kv_config_file)
+
+    try:
+        with open("../strings.json", "r") as hash_file:
+            old_strings = json.load(hash_file)
+        old_strings_string = json.dumps(old_hashes, ensure_ascii=False, indent=None)
+        print(f"Old strings\nCount: {len(old_strings)} List: {old_strings_string}")
+        print(f"New strings\nCount: {len(strings)} List: {strings_string}")
+    except OSError:
+        old_strings = []
+        old_strings_string = ""
+    finally:
+        with open("../hashes.json", "w") as hash_file:
+            json.dump(hashes, hash_file, ensure_ascii=False, indent=4)
     client = Cloudflare(api_token=kv_config["CLOUDFLARE_API_TOKEN"])
     response_a1 = None
     response_b1 = None
+    response_c1 = None
     response_a2 = ""
     response_b2 = ""
+    response_c2 = ""
     if len(old_hashes) < len(hashes) or force_reduced_output:
         if old_hash_string:
             response_a1 = update_phash(client=client, kv_config=kv_config, hash_string=old_hash_string, backup=True)
@@ -150,6 +184,14 @@ def main(force_reduced_output: bool = False) -> None:
         response_b2 = update_phash_and_dimensions(client=client, kv_config=kv_config, hashes_and_dimensions_string=hashes_and_dimensions_string)
     else:
         print("Hash and dimensions list same or smaller.")
+    if len(old_strings) < len(strings) or force_reduced_output:
+        if old_strings_string:
+            response_c1 = update_strings(client=client, kv_config=kv_config, strings=old_strings_string, backup=True)
+        else:
+            response_c1 = None
+        response_c2 = update_strings(client=client, kv_config=kv_config, strings=strings_string)
+    else:
+        print("Hash and dimensions list same or smaller.")
 
     if response_a1:
         print(f"Response: \n{response_a1}")
@@ -163,6 +205,13 @@ def main(force_reduced_output: bool = False) -> None:
         print("Cloudflare kv updated for hash and dimension list!")
     if response_b2:
         print(f"Response: \n{response_b2}")
+    if response_c1:
+        print(f"Response: \n{response_c1}")
+    elif response_c2 is None:
+        print("Cloudflare kv updated for strings list!")
+    if response_c2:
+        print(f"Response: \n{response_c2}")
+
 
 def update_phash(client: Cloudflare, kv_config: dict, hash_string: str, backup: bool = False) -> Union[str, None, ValueUpdateResponse]:
     if not hash_string:
@@ -194,6 +243,20 @@ def update_phash_and_dimensions(client: Cloudflare, kv_config: dict, hashes_and_
                                                   value=hashes_and_dimensions_string.encode('utf-8'),
                                                   account_id=kv_config["ACCOUNT_ID"])
 
+def update_strings(client: Cloudflare, kv_config: dict, strings: str, backup: bool = False) -> Union[str, None, ValueUpdateResponse]:
+    if not strings:
+        print("No strings to update.")
+        return "Not updated."
+    if not backup:
+        return client.kv.namespaces.values.update(key_name=kv_config["KV_PAIR3"],
+                                                  namespace_id=kv_config["NAMESPACE_ID"],
+                                                  value=strings.encode('utf-8'),
+                                                  account_id=kv_config["ACCOUNT_ID"])
+    else:
+        return client.kv.namespaces.values.update(key_name=kv_config["KV_PAIR3"] + "_backup",
+                                                  namespace_id=kv_config["NAMESPACE_ID"],
+                                                  value=strings.encode('utf-8'),
+                                                  account_id=kv_config["ACCOUNT_ID"])
 
 if __name__ == "__main__":
     main()
