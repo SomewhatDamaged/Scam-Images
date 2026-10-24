@@ -1953,6 +1953,34 @@
         ]
     },
     {
+        "phash": "b8cc3c4c6703528bad612a7ca4a8cf7a38c55d2ac754b87f8be6a94c8e1ba9f0",
+        "dimensions": [
+            1080,
+            1027
+        ]
+    },
+    {
+        "phash": "be007ea017f8815f401f80094f003f4adfff5ffdaa07d02bf2f8ea90b017c07e",
+        "dimensions": [
+            608,
+            1080
+        ]
+    },
+    {
+        "phash": "853164c785b690eada0f5b025ae93a2f5c05bbe077bca6b56896a2544ed6949f",
+        "dimensions": [
+            836,
+            1080
+        ]
+    },
+    {
+        "phash": "8057d56f2ad5e9897daad8aa7fea646456f46a3588a52ad3d2212ad4e4911ad5",
+        "dimensions": [
+            1080,
+            718
+        ]
+    },
+    {
         "phash": "bbac1388cc534c6133166616c8f9d0193e6c36e5d3072f9994f9ccf63f823336",
         "dimensions": [
             3840,
