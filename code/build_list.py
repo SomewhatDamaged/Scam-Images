@@ -150,9 +150,9 @@ def main(force_reduced_output: bool = False) -> None:
         kv_config = json.load(kv_config_file)
 
     try:
-        with open("../strings.json", "r") as hash_file:
-            old_strings = json.load(hash_file)
-        old_strings_string = json.dumps(old_hashes, ensure_ascii=False, indent=None)
+        with open("../strings.json", "r") as string_file:
+            old_strings = json.load(string_file)
+        old_strings_string = json.dumps(old_strings, ensure_ascii=False, indent=None)
         print(f"Old strings\nCount: {len(old_strings)} List: {old_strings_string}")
         print(f"New strings\nCount: {len(strings)} List: {strings_string}")
     except OSError:
